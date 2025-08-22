@@ -473,3 +473,27 @@ $delete = fn(Product $product) => $product->delete();
 - Every change must be programmatically tested. Write a new test or update an existing test, then run the affected tests to make sure they pass.
 - Run the minimum number of tests needed to ensure code quality and speed. Use `php artisan test` with a specific filename or filter.
 </laravel-boost-guidelines>
+
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+
+# Project Context Management
+CRITICAL: Always read and reference the `task.md` file at the beginning of each conversation. This file contains:
+- Complete project overview and context
+- Detailed progress tracking of all completed, in-progress, and pending tasks
+- Database schema information
+- Technology stack details
+- Next steps and task priorities
+
+The `task.md` file serves as the project's memory and context. Update it whenever:
+- Tasks are completed or progress is made
+- New tasks are identified or priorities change
+- Important decisions or changes are made to the project structure
+
+This ensures continuity across conversations and prevents context loss when resuming work on the project.
+
+      
+      IMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.

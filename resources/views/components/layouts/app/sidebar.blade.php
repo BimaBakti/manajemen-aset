@@ -12,22 +12,37 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
+                <flux:navlist.group :heading="__('Main Menu')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
+
+                <flux:navlist.group :heading="__('Asset Management')" class="grid">
+                    <flux:navlist.item icon="computer-desktop" href="/assets" :current="request()->is('assets*')" wire:navigate>{{ __('Assets') }}</flux:navlist.item>
+                    <flux:navlist.item icon="squares-2x2" href="/categories" :current="request()->is('categories*')" wire:navigate>{{ __('Categories') }}</flux:navlist.item>
+                    <flux:navlist.item icon="map-pin" href="/locations" :current="request()->is('locations*')" wire:navigate>{{ __('Locations') }}</flux:navlist.item>
+                </flux:navlist.group>
+
+                <flux:navlist.group :heading="__('Requests & Loans')" class="grid">
+                    <flux:navlist.item icon="document-text" href="/asset-requests" :current="request()->is('asset-requests*')" wire:navigate>{{ __('Asset Requests') }}</flux:navlist.item>
+                    <flux:navlist.item icon="arrows-right-left" href="/asset-loans" :current="request()->is('asset-loans*')" wire:navigate>{{ __('Asset Loans') }}</flux:navlist.item>
+                </flux:navlist.group>
+
+                @if(auth()->user()->isAdmin() || auth()->user()->isProcurement())
+                <flux:navlist.group :heading="__('Procurement')" class="grid">
+                    <flux:navlist.item icon="shopping-cart" href="/procurement-requests" :current="request()->is('procurement-requests*')" wire:navigate>{{ __('Procurement Requests') }}</flux:navlist.item>
+                    <flux:navlist.item icon="building-storefront" href="/vendors" :current="request()->is('vendors*')" wire:navigate>{{ __('Vendors') }}</flux:navlist.item>
+                </flux:navlist.group>
+                @endif
+
+                @if(auth()->user()->isAdmin())
+                <flux:navlist.group :heading="__('Administration')" class="grid">
+                    <flux:navlist.item icon="users" href="/users" :current="request()->is('users*')" wire:navigate>{{ __('Users') }}</flux:navlist.item>
+                    <flux:navlist.item icon="building-office" href="/departments" :current="request()->is('departments*')" wire:navigate>{{ __('Departments') }}</flux:navlist.item>
+                </flux:navlist.group>
+                @endif
             </flux:navlist>
 
             <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
 
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
